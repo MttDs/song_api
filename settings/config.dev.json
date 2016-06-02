@@ -1,0 +1,7 @@
+{
+    "port": 6666,
+    "secret_token": "s€cR6T-T0ke2",
+    "db": {
+        "mongo": "mongodb://localhost:27017/song_api"
+    }
+}
