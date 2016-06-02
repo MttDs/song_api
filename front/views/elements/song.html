@@ -3,6 +3,6 @@
         <div class="plNum">{{ song.year }}</div>
         <div class="plTitle"><a href="#/mes-mp3/{{ song._id }}">{{ song.title }} - {{ song.artist }}</a></div>
         <div class="plLength">{{ song.duration | sec2min }}</div>
-        <input type="button" value="X"/>
+        <input type="button" value="X" ng-click="$emit('remove', song)"/>
     </div>
 </li>
