@@ -1,12 +1,24 @@
 module.exports = function(server){
     var SongSchema = server.mongoose.Schema({
+        title:{
+            type : String,
+            required: false
+        },
         album: {
             type: String,
             required: true
         },
         artist: {
             type: String,
-            required: true
+            required: false
+        },
+        year:{
+            type:Number,
+            required : false
+        },
+        duration:{
+            type:Number,
+            required:false
         }
     });
 

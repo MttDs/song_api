@@ -1,53 +1,31 @@
 var path = require('path');
 var fs = require('fs');
+var mm = require('musicmetadata');
+
 
 module.exports = function(server){
     return function(req, res, next){
 
         function onNewFile(file) {
-            if (path.extname(file) == ".txt")
+            if (path.extname(file) == ".mp3")
                 processFile(file);
             else
                 fs.rename(file, "garbage/" + path.basename(file));
         }
 
         function processFile(file) {
-            fs.readFile(file, 'utf8', function(error, content){
-                if (error)
-                {
-                    if (error.errno == -2)
-                        console.log("Le nom du fichier est incorrect");
-                    else
-                        console.log(error);
-                    return;
-                }
+                //fs.unlink(file);
 
-                fs.unlink(file);
+                treatMetaDataFromSong(server,file,createFolder);
 
-                var lines = content.split("\n");
 
-                var parts;
-                var album;
-                var artist;
-
-                lines.forEach(function(line){
-
-                    parts = line.split("-");
-
-                    if (parts[1] != undefined) {
-                        album = parts[0].trim();
-                        artist = parts[1].trim();
-
-                        createFolder(album, artist, save);
-                    }
-                });
-            });
         }
 
         function save(body) {
+            console.log("--------------------appelle de save");
             var Song = server.models.Song;
 
-            song = new Song(body)
+            song = new Song(body);
 
             song.save(function(err, data){
                 if (err) {
@@ -59,12 +37,32 @@ module.exports = function(server){
             });
         }
 
-        function createFolder(album, artist, cb)
+        function createFolder(song,songParam)
         {
-            fs.mkdir("albums/" + album, function(error){
-                var body = { artist: artist, album: album };
+            console.log("fonction create folder : "+song);
+            fs.mkdir("albums/" + song.album, function(error){
+                var body = song;
 
-                fs.writeFile("albums/" + album + "/" + artist, "", cb(body));
+                var unknownFolder = "albums/inconnu/";
+                var albumFolder = "albums/"+song.album;
+                if(song.album == undefined || song.album=="" || song.album==null){
+
+
+                    if (!fs.existsSync(unknownFolder)){
+                        fs.mkdirSync(unknownFolder);
+                    }
+
+                    fs.rename(songParam,unknownFolder+""+path.basename(songParam));
+
+                }else{
+                    if (!fs.existsSync(albumFolder)){
+                        fs.mkdirSync(albumFolder);
+                    }
+                    fs.rename(songParam,"albums/"+ song.album + "/"+path.basename(songParam));
+                }
+
+
+                //fs.writeFile("albums/" + song.album + "/" + song.artist+".mp3", "", save(body));
             });
         }
 
@@ -72,4 +70,31 @@ module.exports = function(server){
     };
 };
 
+
+function treatMetaDataFromSong(server,songParam,createFolder){
+    console.log("entre dans la fonction get MEta data et song = : "+songParam);
+    var metaDataToReturn=null;
+    var parser = mm(fs.createReadStream(songParam),{ duration: true }, function (err, metaData) {
+        if (err)
+            throw err;
+
+        //creatin of object song
+        var Song = server.models.Song;
+        var song = new Song();
+        song.title= metaData.title;
+
+        if(Array.isArray(metaData.artist)){
+            song.artist = metaData.artist.join();
+        }
+        else
+            song.artist = metaData.artist;
+        song.album = metaData.album;
+        song.year = metaData.year;
+        song.duration = metaData.duration;
+
+        console.log("après initialisation de song : "+song);
+
+        createFolder(song,songParam);
+    });
+}
 
