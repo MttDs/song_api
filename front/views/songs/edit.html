@@ -1,5 +1,5 @@
-<h1>{{ song.name }}</h1>
-
+<div id="editSong">
+<h2>Editer un mp3</h2>
 <form>
     <label for="name">Titre : </label>
     <input type="text" id="name" ng-model="song.title" value="{{ song.title }}"/><br/>
@@ -11,6 +11,9 @@
     <input type="text" id="year" ng-model="song.year" value="{{ song.year }}"/><br/>
     <label for="duration">Titre : </label>
     <input type="text" id="duration" ng-model="song.duration"  value="{{ song.duration }}"/><br/>
-    <button ng-click="$emit('save', song)">Save</button>
-    <button ng-click="$emit('reset', song)">Cancel</button>
+    <div class="buttons">
+    <button id="editButton" ng-click="$emit('save', song)">Modifer</button>
+    <button id="resetButton" ng-click="$emit('reset', song)">Annuler</button>
+    </div>
 </form>
+</div>

@@ -126,6 +126,40 @@ audio { margin:0 15px 0 14px; width:670px; }
 #npAction { padding:21px; position:absolute; }
 #plList { margin:0; }
 #plList li { background-color:#231F20; cursor:pointer; margin:0; padding:21px 0; }
+#editSong { background-color:#231F20; padding-top: 10px; }
+#editSong h2 {
+    margin: 10px 4% 15px 4%;
+
+}
+#editSong label {
+    margin: 0px 4%;
+    height: 30px;
+    margin-bottom: 10px;
+    width: 92% ;
+    font-size: 22px;
+}
+#editSong input{
+    margin: 5px 4%;
+    background-color:#2B2728;
+    border: 1px solid #454041;
+    height: 40px;
+    padding: 5px;
+    color: #aaa;
+    width: 92% ;
+    margin-bottom: 10px;
+}
+#editSong .buttons button{
+    display: inline-block;
+    background-color:#ccc;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #454041;
+}
+#editSong .buttons{
+    margin: auto 0;
+    text-align: center;
+    padding: 10px;
+}
 #filters { background-color:#231F20; }
 #filters h6{
     margin: 0px 4%;
