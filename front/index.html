@@ -5,7 +5,7 @@
         <link href="css/style.css" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-        <!--<script src="vendors/jquery.js"></script>-->
+        <script src="vendors/jquery.js"></script>
         <script src="vendors/angular.js"></script>
         <script src="vendors/angular-route.js"></script>
         <script src="utils/utils.js"></script>
@@ -22,12 +22,25 @@
         </div>
 
         <div id="tutorielLink"><a href="#/tutoriel">tutoriel</a></div>
+        <div ng-controller="PlayerController">
+            <div id="nowPlay">
+                <span class="left" id="npAction">Paused...</span>
+                <span class="right" id="npTitle"></span>
+            </div>
+            <div id="audiowrap">
+                <div id="audio0">
+                    <audio preload id="audio1" controls="controls">Your browser does not support HTML5 Audio!</audio>
+                </div>
+                <div id="tracks">
+                    <a id="btnPrev">&laquo;</a>
+                    <a id="btnNext">&raquo;</a>
+                </div>
+            </div>
+        </div>
         <div id="mainwrap" ng-view></div>
 
         <div class="column add-bottom center">
             <p>Designed by <a href="http://www.markhillard.com/">mh</a>.</p>
         </div>
-
-        <!--<script src="js/script.js"></script>-->
     </body>
 </html>
