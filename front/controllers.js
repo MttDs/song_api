@@ -31,7 +31,7 @@ angular
                 if ($rootScope.songs)
                     $rootScope.songs.replaceById(song, data);
 
-                $location.path('/');
+               // $location.path('/');
             });
 
         });

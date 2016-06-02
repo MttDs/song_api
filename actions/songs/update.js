@@ -2,11 +2,23 @@ module.exports = function(server){
     return function(req, res, next){
         var Song = server.models.Song
 
-        Song.findByIdAndUpdate(req.params.id, req.body, function(err, data){
-            if (err)
+
+        Song.findById(req.params.id, function(err, song){
+            if (err || !song)
                 return res.status(500).send(err)
 
-            res.send(data)
-        });
+            var oldAlbum = song.album;
+            var newAlbum = req.body.album;
+
+            Song.findByIdAndUpdate(req.params.id, req.body, function(err, data){
+                if (err)
+                    return res.status(500).send(err)
+
+                if (oldAlbum != newAlbum)
+                    server.services.move_file(oldAlbum, newAlbum, song.name)
+
+                res.send(data)
+            });
+        })
     }
 }

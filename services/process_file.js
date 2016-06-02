@@ -47,8 +47,6 @@ module.exports = function(server){
 
                     return true;
                 });
-
-                //fs.writeFile("albums/" + song.album + "/" + song.artist+".mp3", "", save(body));
             });
         }
 
