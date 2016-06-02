@@ -6,11 +6,11 @@
             <input type="text" id="name" ng-model="song.title" value="{{ song.title }}"/><br/>
             <label for="artist">Artiste : </label>
             <input type="text" id="artist" ng-model="song.artist" value="{{ song.artist }}"/><br/>
-            <label for="album">Titre : </label>
+            <label for="album">Album : </label>
             <input type="text" id="album" ng-model="song.album" value="{{ song.album }}"/><br/>
-            <label for="year">Titre : </label>
+            <label for="year">Année : </label>
             <input type="text" id="year" ng-model="song.year" value="{{ song.year }}"/><br/>
-            <label for="duration">Titre : </label>
+            <label for="duration">Durée : </label>
             <input type="text" id="duration" ng-model="song.duration"  value="{{ song.duration }}"/><br/>
             <div class="buttons">
             <button id="editButton" ng-click="$emit('save', song)">Modifer</button>
