@@ -2,7 +2,6 @@ var path = require('path');
 var fs = require('fs');
 var mm = require('musicmetadata');
 
-
 module.exports = function(server){
     return function(req, res, next){
 
