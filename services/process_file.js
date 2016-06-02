@@ -23,20 +23,26 @@ module.exports = function(server){
 
                 var unknownFolder = "albums/inconnu/";
                 var albumFolder = "albums/"+song.album;
-                if(song.album == undefined || song.album=="" || song.album==null){
 
-
-                    if (!fs.existsSync(unknownFolder)){
-                        fs.mkdirSync(unknownFolder);
-                    }
-
-                    fs.rename(songParam,unknownFolder+""+path.basename(songParam));
-
-                }else{
-                    if (!fs.existsSync(albumFolder)){
-                        fs.mkdirSync(albumFolder);
-                    }
-                    fs.rename(songParam,"albums/"+ song.album + "/"+path.basename(songParam));
+                if(song.album == undefined || song.album=="" || song.album==null) {
+                    fs.mkdir(unknownFolder, function(err) {
+                        fs.rename(songParam,unknownFolder+""+path.basename(songParam), function(err) {
+                            if (err) {
+                                console.log(err)
+                                return;
+                            }
+                        });
+                    });
+                }
+                else {
+                    fs.mkdir(albumFolder, function(err) {
+                        fs.rename(songParam,"albums/"+ song.album + "/"+path.basename(songParam), function(err) {
+                            if (err) {
+                                console.log(err)
+                                return;
+                            }
+                        });
+                    });
                 }
 
                 song.save(function(err, data){
