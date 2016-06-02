@@ -126,10 +126,20 @@ audio { margin:0 15px 0 14px; width:670px; }
 #npAction { padding:21px; position:absolute; }
 #plList { margin:0; }
 #plList li { background-color:#231F20; cursor:pointer; margin:0; padding:21px 0; }
-#editSong { background-color:#231F20; padding-top: 10px; }
+#editSong, #tutorielPage { background-color:#231F20; padding-top: 10px; }
+#tutorielPage .content {
+    margin: 5px 4%;
+    padding-bottom: 10px;
+}
 #editSong h2 {
     margin: 10px 4% 15px 4%;
 
+}
+#tutorielLink {
+    text-align:right;
+    margin-bottom: 2px;
+    font-size: 18px;
+    color: #eee;
 }
 #editSong label {
     margin: 0px 4%;
