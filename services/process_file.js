@@ -14,32 +14,11 @@ module.exports = function(server){
         }
 
         function processFile(file) {
-                //fs.unlink(file);
-
-                treatMetaDataFromSong(server,file,createFolder);
-
-
-        }
-
-        function save(body) {
-            console.log("--------------------appelle de save");
-            var Song = server.models.Song;
-
-            song = new Song(body);
-
-            song.save(function(err, data){
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-
-                return true;
-            });
+            treatMetaDataFromSong(server,file,createFolder);
         }
 
         function createFolder(song,songParam)
         {
-            console.log("fonction create folder : "+song);
             fs.mkdir("albums/" + song.album, function(error){
                 var body = song;
 
@@ -61,6 +40,14 @@ module.exports = function(server){
                     fs.rename(songParam,"albums/"+ song.album + "/"+path.basename(songParam));
                 }
 
+                song.save(function(err, data){
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+
+                    return true;
+                });
 
                 //fs.writeFile("albums/" + song.album + "/" + song.artist+".mp3", "", save(body));
             });
@@ -72,27 +59,24 @@ module.exports = function(server){
 
 
 function treatMetaDataFromSong(server,songParam,createFolder){
-    console.log("entre dans la fonction get MEta data et song = : "+songParam);
     var metaDataToReturn=null;
     var parser = mm(fs.createReadStream(songParam),{ duration: true }, function (err, metaData) {
         if (err)
             throw err;
 
-        //creatin of object song
         var Song = server.models.Song;
         var song = new Song();
-        song.title= metaData.title;
 
-        if(Array.isArray(metaData.artist)){
-            song.artist = metaData.artist.join();
-        }
-        else
-            song.artist = metaData.artist;
+        song.title= metaData.title;
         song.album = metaData.album;
         song.year = metaData.year;
         song.duration = metaData.duration;
+        song.name = path.basename(songParam);
 
-        console.log("après initialisation de song : "+song);
+        if (Array.isArray(metaData.artist))
+            song.artist = metaData.artist.join();
+        else
+            song.artist = metaData.artist;
 
         createFolder(song,songParam);
     });
