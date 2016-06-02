@@ -13,8 +13,9 @@
         </div>
     </div>
     <div id="plwrap">
+        <input type="text" ng-model="recherche"/>
         <ul id="plList">
-            <songrow ng-repeat="song in songs"></songrow>
+            <songrow ng-repeat="song in songs | filter:recherche | orderBy:song.artist"></songrow>
         </ul>
     </div>
 </div>
