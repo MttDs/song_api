@@ -1,0 +1,16 @@
+<h1>{{ song.name }}</h1>
+
+<form>
+    <label for="name">Titre : </label>
+    <input type="text" id="name" ng-model="song.title" value="{{ song.title }}"/><br/>
+    <label for="artist">Artiste : </label>
+    <input type="text" id="artist" ng-model="song.artist" value="{{ song.artist }}"/><br/>
+    <label for="album">Titre : </label>
+    <input type="text" id="album" ng-model="song.album" value="{{ song.album }}"/><br/>
+    <label for="year">Titre : </label>
+    <input type="text" id="year" ng-model="song.year" value="{{ song.year }}"/><br/>
+    <label for="duration">Titre : </label>
+    <input type="text" id="duration" ng-model="song.duration"  value="{{ song.duration }}"/><br/>
+    <button ng-click="$emit('save', song)">Save</button>
+    <button ng-click="$emit('reset', song)">Cancel</button>
+</form>

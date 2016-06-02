@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Mon player audio</title>
+        <meta charset="utf-8">
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <!--<script src="vendors/jquery.js"></script>-->
+        <script src="vendors/angular.js"></script>
+        <script src="vendors/angular-route.js"></script>
+        <script src="utils/utils.js"></script>
+        <script src="app.js"></script>
+        <script src="controllers.js"></script>
+        <script src="directives.js"></script>
+        <script src="filters.js"></script>
+    </head>
+    <body ng-app="MyApp">
+        <div class="container">
+        <div class="column center">
+            <h1><a href="#/">Mon Player Audio</a></h1>
+            <h6>Mes musiques, en toute simplicité</h6>
+        </div>
+        <div id="mainwrap" ng-view></div>
+
+        <div class="column add-bottom center">
+            <p>Designed by <a href="http://www.markhillard.com/">mh</a>.</p>
+        </div>
+
+        <!--<script src="js/script.js"></script>-->
+    </body>
+</html>
