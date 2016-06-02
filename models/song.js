@@ -19,6 +19,10 @@ module.exports = function(server){
         duration:{
             type:Number,
             required:false
+        },
+        name:{
+            type:String,
+            required:true
         }
     });
 
