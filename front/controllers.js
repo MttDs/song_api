@@ -17,6 +17,12 @@ angular
             $rootScope.songs = data;
         });
     }
+
+    $scope.reverse = true;
+    $scope.order = function(predicate) {
+        $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+        $scope.predicate = predicate;
+    };
 })
 .controller("EditSongController", function($scope, $rootScope, $routeParams, $http, $location) {
     var songId = $routeParams['id']

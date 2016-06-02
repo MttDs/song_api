@@ -1,8 +1,13 @@
 <li>
     <div class="plItem">
         <div class="plNum">{{ song.year }}</div>
-        <div class="plTitle"><a href="#/mes-mp3/{{ song._id }}">{{ song.title }} - {{ song.artist }}</a></div>
+        <div class="plTitle">{{ song.title }} - {{ song.artist }}</a></div>
         <div class="plLength">{{ song.duration | sec2min }}</div>
-        <input type="button" value="X" ng-click="$emit('remove', song)"/>
+        <div class="plEdit">
+            <button type="button" class="deleteButton" value="X" ng-click="$emit('remove', song)"><i class="material-icons">delete</i></button>
+            <a href="#/mes-mp3/{{ song._id }}">
+                <button type="button" class="editButton"><i class="material-icons">edit</i></button>
+            </a>
+        </div>
     </div>
 </li>
