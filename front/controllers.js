@@ -7,6 +7,7 @@ angular
         $http.delete("/songs/"+song._id).success(function(data) {
             $rootScope.songs.removeItemById(song);
             loadSongs();
+            loadPlayer($rootScope.songs);
         });
     });
 
