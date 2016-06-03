@@ -1,7 +1,7 @@
 <li>
     <div class="plItem">
         <div class="plNum">{{ song.year }}&nbsp;</div>
-        <div class="plTitle">{{ song.title }} - {{ song.artist }}</a></div>
+        <div class="plTitle">{{ song.title }} - {{ song.artist }} ({{ song.album }})</a></div>
         <div class="plLength">{{ song.duration | sec2min }}</div>
         <div class="plEdit">
             <button type="button" class="deleteButton" value="X" ng-click="$emit('remove', song)"><i class="material-icons">delete</i></button>
