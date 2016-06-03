@@ -62,7 +62,6 @@ module.exports = function(server){
 
 
 function treatMetaDataFromSong(server,songParam,createFolder){
-    var metaDataToReturn=null;
     var parser = mm(fs.createReadStream(songParam),{ duration: true }, function (err, metaData) {
         if (err)
             throw err;
@@ -77,7 +76,12 @@ function treatMetaDataFromSong(server,songParam,createFolder){
         else
             song.album = metaData.album;
 
-        song.year = metaData.year;
+        metaData.year = parseInt(metaData.year);
+
+        if (Number.isInteger(metaData.year)) {
+            song.year = metaData.year;
+        }
+
         song.duration = metaData.duration;
         song.name = path.basename(songParam);
 
