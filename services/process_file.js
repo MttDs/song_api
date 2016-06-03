@@ -71,7 +71,12 @@ function treatMetaDataFromSong(server,songParam,createFolder){
         var song = new Song();
 
         song.title= metaData.title;
-        song.album = metaData.album;
+
+        if (metaData.album.trim() == "")
+            song.album = "inconnu";
+        else
+            song.album = metaData.album;
+
         song.year = metaData.year;
         song.duration = metaData.duration;
         song.name = path.basename(songParam);
