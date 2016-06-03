@@ -6,6 +6,7 @@ angular
     $scope.$on('remove', function(event, song) {
         $http.delete("/songs/"+song._id).success(function(data) {
             $rootScope.songs.removeItemById(song);
+            loadSongs();
         });
     });
 

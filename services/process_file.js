@@ -62,9 +62,11 @@ module.exports = function(server){
 
 
 function treatMetaDataFromSong(server,songParam,createFolder){
-    var parser = mm(fs.createReadStream(songParam),{ duration: true }, function (err, metaData) {
-        if (err)
-            throw err;
+    mm(fs.createReadStream(songParam),{ duration: true }, function (err, metaData) {
+        if (err) {
+            treatMetaDataFromSong(server,songParam,createFolder)
+            return;
+        }
 
         var Song = server.models.Song;
         var song = new Song();
