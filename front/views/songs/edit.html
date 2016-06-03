@@ -11,7 +11,7 @@
             <label for="year">Année : </label>
             <input type="text" id="year" ng-model="song.year" value="{{ song.year }}"/><br/>
             <label for="duration">Durée : </label>
-            <input type="text" id="duration" ng-model="song.duration"  value="{{ song.duration }}"/><br/>
+            <input type="text" id="duration" readonly="true" ng-model="song.duration"  value="{{ song.duration }}"/><br/>
             <div class="buttons">
             <button id="editButton" ng-click="$emit('save', song)">Modifer</button>
             <button id="resetButton" ng-click="$emit('reset', song)">Annuler</button>
