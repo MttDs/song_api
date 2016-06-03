@@ -6,8 +6,12 @@ module.exports = function(server){
         if (newAlbum.trim() == "")
             newAlbum = "inconnu"
 
+        if (oldAlbum == "")
+            oldAlbum = "inconnu"
+
         var oldDirectory = __dirname+'/../albums/'+oldAlbum;
         var newDirectory = __dirname+'/../albums/'+newAlbum;
+
 
         fs.mkdir(newDirectory, function(err){
             fs.rename(oldDirectory+"/"+name, newDirectory+"/"+name, function(err){
