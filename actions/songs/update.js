@@ -14,11 +14,13 @@ module.exports = function(server){
                 if (err)
                     return res.status(500).send(err)
 
-                if (oldAlbum != newAlbum)
-                    server.services.move_file(oldAlbum, newAlbum, song.name)
+                if (oldAlbum != newAlbum){
+                    server.services.change_meta_data(song,req.body, song.name);
+                    server.services.move_file(oldAlbum, newAlbum, song.name);
+                }
 
-                res.send(data)
+                res.send(data);
             });
         })
-    }
-}
+    };
+};

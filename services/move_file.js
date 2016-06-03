@@ -2,6 +2,7 @@ var fs = require('fs');
 
 module.exports = function(server){
     return function(oldAlbum, newAlbum, name){
+        console.log("function change meta data----------------");
         if (newAlbum.trim() == "")
             newAlbum = "inconnu"
 
