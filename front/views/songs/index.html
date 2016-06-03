@@ -1,29 +1,26 @@
-<div ng-controller="ListSongController">
-
-    <div id="plwrap">
-        <div id="filters">
-            <h6>Votre recherche</h6>
-            <input type="text" ng-model="recherche"/>
-        </div>
-        <ul id="plList">
-            <li>
-                <div class="plItem">
-                    <div class="plNum">
-                        <div ng-click="order('year')"><u>Année</u></div>
-                        <span class="sortorder" ng-show="predicate === 'year'"></span>
-                    </div>
-                    <div class="plTitle">
-                        <div ng-click="order('title')"><u>Titre</u></div>
-                        <span class="sortorder" ng-show="predicate === 'title'"></span>
-                    </div>
-                    <div class="plLength">
-                        <div ng-click="order('duration')"><u>Durée</u></div>
-                        <span class="sortorder" ng-show="predicate === 'duration'"></span>
-                    </div>
-                </div>
-            </li>
-
-            <songrow ng-repeat="song in songs | filter:recherche | orderBy:predicate:reverse"></songrow>
-        </ul>
+<div id="plwrap">
+    <div id="filters">
+        <h6>Votre recherche</h6>
+        <input type="text" ng-model="recherche"/>
     </div>
+    <ul id="plList">
+        <li>
+            <div class="plItem">
+                <div class="plNum">
+                    <div ng-click="order('year')"><u>Année</u></div>
+                    <span class="sortorder" ng-show="predicate === 'year'"></span>
+                </div>
+                <div class="plTitle">
+                    <div ng-click="order('title')"><u>Titre</u></div>
+                    <span class="sortorder" ng-show="predicate === 'title'"></span>
+                </div>
+                <div class="plLength">
+                    <div ng-click="order('duration')"><u>Durée</u></div>
+                    <span class="sortorder" ng-show="predicate === 'duration'"></span>
+                </div>
+            </div>
+        </li>
+
+        <songrow ng-repeat="song in songs | filter:recherche | orderBy:predicate:reverse"></songrow>
+    </ul>
 </div>
