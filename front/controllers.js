@@ -78,11 +78,16 @@ function loadPlayer(songs) {
     b.setAttribute('data-platform', navigator.platform);
 
     var tracks = []
-
+    var title = "";
     for (i in songs) {
+        if (songs[i].title == "")
+            title = "Inconnu"
+        else
+            title = songs[i].title
+
         tracks.push({
             "track": 1,
-            "name": songs[i].title,
+            "name": title,
             "length": songs[i].duration,
             "file": songs[i].album+'/'+songs[i].name
         })
