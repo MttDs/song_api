@@ -3,7 +3,6 @@ angular
 .controller("ListSongController", function($scope, $rootScope, $http, $interval) {
     loadSongs();
 
-console.log("here"),
     $scope.$on('remove', function(event, song) {
         $http.delete("/songs/"+song._id).success(function(data) {
             $rootScope.songs.removeItemById(song);
